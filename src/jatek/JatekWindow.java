@@ -7,10 +7,15 @@ import java.awt.*;
  * A játéktábla ablakának osztálya
  */
 public class JatekWindow extends JFrame {
-    TablaPanel jatekter;
-    int hor;
-    int ver;
+    private TablaPanel jatekter;
+    private int hor;
+    private int ver;
 
+    /**
+     * Konstruktor, konfigurálja az ablak beállításait és létrehoz benne egy TablaPanelt. JFrameként viselkedik.
+     * @param h a cellák száma vízszintesen
+     * @param v a cellák száma függőlegesen
+     */
     public JatekWindow(int h, int v) {
         hor = h;
         ver = v;
@@ -28,6 +33,10 @@ public class JatekWindow extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Visszaadja a tartalmazott TablaPanelt.
+     * @return a tartalmazott TablaPanel
+     */
     public TablaPanel getJatekter() {
         return jatekter;
     }

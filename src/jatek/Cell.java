@@ -2,15 +2,24 @@ package jatek;
 
 import java.io.Serializable;
 
+/**
+ * Egy cellát és az arra vonatkozó adatokat csoportosítja egy osztályba.
+ */
 public class Cell implements Serializable {
-    boolean alive;
-    int aliveNear;
-    int lessThan; // (ha él) ennél kevesebb szomszéd alive szomszéd -> halál
-    int moreThan; // (ha él) ennél több alive szomszéd -> halál
-    int forBirth; // (ha nem él) ennyi élő szomszéd -> szuletik
-    int coordHor;
-    int coordVer;
+    private boolean alive;
+    private int aliveNear;
+    private int lessThan; // (ha él) ennél kevesebb szomszéd alive szomszéd -> halál
+    private int moreThan; // (ha él) ennél több alive szomszéd -> halál
+    private int forBirth; // (ha nem él) ennyi élő szomszéd -> szuletik
+    private int coordHor;
+    private int coordVer;
 
+    /**
+     * Konstruktor, beállítja a cellára vonatkozó alapszabályokat és adatokat.
+     * @param isAlive életben van-e a cella
+     * @param hor cella vízszintes koordinátája
+     * @param ver cella függőleges koordinátája
+     */
     public Cell(boolean isAlive, int hor, int ver) {
         alive = isAlive;
         lessThan = 2; // alapszabalyok

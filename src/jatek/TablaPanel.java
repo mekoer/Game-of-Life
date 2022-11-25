@@ -15,12 +15,12 @@ import java.util.ArrayList;
  */
 public class TablaPanel extends JPanel {
     private ArrayList<ArrayList<Cell>> State;
-    int hor;
-    int ver;
-    int cellSize;
-    Timer timer;
-    int timerDelay;
-    boolean paused;
+    private int hor;
+    private int ver;
+    private int cellSize;
+    private Timer timer;
+    private int timerDelay;
+    private boolean paused;
 
     /**
      * konstruktor, inicializálja a tagváltozókat és beállítja a panel alaptulajdonságait.
@@ -133,8 +133,10 @@ public class TablaPanel extends JPanel {
     }
 
     /**
-     * Visszatölti a szerializált állapotot,
+     * Visszatölti a szerializált állapotot, ha éppen meg van nyitva egy játékablak, akkor
      * ha a játéktábla nagyobb lett közben, a közepébe helyezi el, ha kisebb lett lavágja a széleket.
+     * Ha nincs megnyitva játékablak, de van mentett állás, akkor megnyit egy alapértelmezett méretű ablakot
+     * és ebbe tölti bele a mentett mintát.
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -144,17 +146,32 @@ public class TablaPanel extends JPanel {
         ArrayList<ArrayList<Cell>> temp;
         temp = (ArrayList<ArrayList<Cell>>) in.readObject();
 
-        //int** belerak = empty(meret_x);
-        this.kill();
-        for(int i = 0; i < temp.size(); ++i) {
-            for(int j = 0; j < temp.get(i).size(); ++j) {
-                State.get(i + (State.size() - temp.size()) / 2).get(
-                        j + (State.get(0).size() - temp.get(0).size()) / 2).setAlive(
-                                temp.get(i).get(j).isAlive());
-                //belerak[i + ((meret_x - hor) / 2)][j + ((meret_x - ver) / 2)] = input[i][j];
+        // ha kisebb palyaba toltunk nagyobb mintat
+        if (temp.size() > hor || temp.get(0).size() > ver) {
+            this.kill();
+            for(int i = 0; i < hor; ++i) {
+                for(int j = 0; j < ver; ++j) {
+                    State.get(i).get(j).setAlive(
+                            temp.get(i + (temp.size() - hor) / 2).get(j + (temp.get(0).size() - ver) / 2).isAlive());
+                }
             }
         }
+        // ha nagyobb palyaba toltunk kisebb mintat
+        else {
+            //int** belerak = empty(meret_x); <- régi saját kódom
+            this.kill();
+            for(int i = 0; i < temp.size(); ++i) {
+                for(int j = 0; j < temp.get(i).size(); ++j) {
+                    State.get(i + (State.size() - temp.size()) / 2).get(
+                        j + (State.get(0).size() - temp.get(0).size()) / 2).setAlive(
+                                temp.get(i).get(j).isAlive());
+                    //belerak[i + ((meret_x - hor) / 2)][j + ((meret_x - ver) / 2)] = input[i][j]; <- régi saját kódom
+                }
+            }
+        }
+        
 
+        in.close();
         repaint();
     }
 
@@ -170,7 +187,8 @@ public class TablaPanel extends JPanel {
     }
 
     /**
-     * A cellák rajzolásáért felelős függvény.
+     * A cellák rajzolásáért felelős függvény. Graphics2D felhasználásával rajzol fehér négyzeteket az élő cellák pozíciójára,
+     * majd az egész tábla fölé egy négyzetrácsot, hogy jobban elkülöníthetőek legyenek a cellák.
      * @param g the <code>Graphics</code> context in which to paint
      */
     @Override

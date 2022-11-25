@@ -6,17 +6,25 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * Az irányítópanel ablaka.
+ */
 public class ControlWindow extends JFrame {
-    JPanel panel1;
-    JPanel panel2;
-    JPanel panel3;
-    JPanel panel4;
-    JPanel panel5;
-    JPanel panel6;
-    JPanel panel7;
-    JatekWindow ablak;
-    boolean paused;
+    private JTextField horizontal;
+    private JTextField vertical;
+    private JPanel panel1;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JPanel panel4;
+    private JPanel panel5;
+    private JPanel panel6;
+    private JPanel panel7;
+    private JatekWindow ablak;
+    private boolean paused;
 
+    /**
+     * Konstruktor, konfigurálja az ablakot és meghívja a tartalmazott panelek setup függvényeit.
+     */
     public ControlWindow() {
         paused = true;
         this.setLocationRelativeTo(null);
@@ -28,12 +36,18 @@ public class ControlWindow extends JFrame {
         panel1Setup();
         panel2Setup();
         panel3Setup();
-        panel456Setup();
+        panel4Setup();
+        panel5Setup();
+        panel6Setup();
         panel7Setup();
         this.pack();
         this.setVisible(true);
     }
 
+    /**
+     * Az első panelt rakja össze. Tartalmaz két JTextFieldet és egy JButton gombot,
+     * ezekket vezérelhető hogy mekkora méretű játékablakot nyitunk.
+     */
     public void panel1Setup() {
         panel1 = new JPanel();
         panel1.setBackground(Color.BLACK);
@@ -41,11 +55,11 @@ public class ControlWindow extends JFrame {
 
         // szelesseg textbox es label
         JLabel HLabel = new JLabel("Width:");
-        JTextField horizontal = new JTextField("25", 3);
+        horizontal = new JTextField("25", 3);
 
         // magassag textbox es label
         JLabel VLabel = new JLabel("Height:");
-        JTextField vertical = new JTextField("25", 3);
+        vertical = new JTextField("25", 3);
 
         // inditogomb es listener
         JButton generate = new JButton("Generate");
@@ -65,6 +79,10 @@ public class ControlWindow extends JFrame {
 
         this.add(panel1);
     }
+
+    /**
+     * A második panelt rakja össze. Két JButtont tartalmaz, az egyik a szimulációt indítja és állítja meg, a másik egyszer lépteti a szimulációt.
+     */
     public void panel2Setup() {
         // play pause gomb
         JLabel playpauseL = new JLabel("Play / Pause");
@@ -82,6 +100,11 @@ public class ControlWindow extends JFrame {
 
         this.add(panel2);
     }
+
+    /**
+     * A harmadik panelt rakja össze. Négy JButtont tartalmaz, ezekkel a szimuláció sebessége szabályozható.
+     * Az alapbeállítás 1 lépés/sec, ehhez képest mehet 2x, 4x vagy 8x gyorsabban.
+     */
     public void panel3Setup() {
         // speed control
         JLabel seb = new JLabel("Sebesség");
@@ -95,6 +118,9 @@ public class ControlWindow extends JFrame {
         JButton fourx = new JButton("4x");
         fourx.addActionListener(e -> ablak.getJatekter().refreshTimer(250));
 
+        JButton eightx = new JButton("8x");
+        fourx.addActionListener(e -> ablak.getJatekter().refreshTimer(125));
+
         panel3 = new JPanel(new FlowLayout());
         panel3.setBackground(Color.BLACK);
 
@@ -102,10 +128,16 @@ public class ControlWindow extends JFrame {
         panel3.add(onex);
         panel3.add(twox);
         panel3.add(fourx);
+        panel3.add(eightx);
 
         this.add(panel3);
     }
-    public void panel456Setup() {
+
+    /**
+     * A negyedik panelt rakja össze. Az itt található JTextFeieldben állítható,
+     * hogy mi legyen a cella életben maradásához szükséges minimális számú élő szomszéd.
+     */
+    public void panel4Setup() {
         JLabel lessLabel = new JLabel("minimalis szamu elo szomszed az eletben maradashoz");
         JTextField lessThanToDie = new JTextField("2", 3);
         lessThanToDie.getDocument().addDocumentListener(new DocumentListener() {
@@ -128,6 +160,19 @@ public class ControlWindow extends JFrame {
             }
         });
 
+        panel4 = new JPanel();
+        panel4.setBackground(Color.BLACK);
+        panel4.add(lessLabel);
+        panel4.add(lessThanToDie);
+
+        this.add(panel4);
+    }
+
+    /**
+     * Az ötödik panelt rakja össze. Az itt található JTextFeieldben állítható,
+     * hogy mi legyen a cella életben maradásához szükséges maximális számú élő szomszéd.
+     */
+    public void panel5Setup() {
         JLabel moreLabel = new JLabel("maximalis szamu elo szomszed az eletben maradashoz");
         JTextField moreThanToDie = new JTextField("3", 3);
         moreThanToDie.getDocument().addDocumentListener(new DocumentListener() {
@@ -150,6 +195,19 @@ public class ControlWindow extends JFrame {
             }
         });
 
+        panel5 = new JPanel();
+        panel5.setBackground(Color.BLACK);
+        panel5.add(moreLabel);
+        panel5.add(moreThanToDie);
+
+        this.add(panel5);
+    }
+
+    /**
+     * A hatodik panelt rakja össze. Az itt található JTextFeieldben állítható,
+     * hogy mi legyen a cella újjászületéséhez szükséges számú élő szomszéd.
+     */
+    public void panel6Setup() {
         JLabel birthLabel = new JLabel("szukséges számú elo szomszed az ujjaszuleteshez");
         JTextField toBirth = new JTextField("3", 3);
         toBirth.getDocument().addDocumentListener(new DocumentListener() {
@@ -172,26 +230,28 @@ public class ControlWindow extends JFrame {
             }
         });
 
-        panel4 = new JPanel();
-        panel4.setBackground(Color.BLACK);
-        panel4.add(lessLabel);
-        panel4.add(lessThanToDie);
-
-        panel5 = new JPanel();
-        panel5.setBackground(Color.BLACK);
-        panel5.add(moreLabel);
-        panel5.add(moreThanToDie);
-
         panel6 = new JPanel();
         panel6.setBackground(Color.BLACK);
         panel6.add(birthLabel);
         panel6.add(toBirth);
 
-        this.add(panel4);
-        this.add(panel5);
         this.add(panel6);
     }
+
+    /**
+     * A hetedik panelt rakja össze. Három JButtont tartalmaz, mentés és kilépés, mentés és töltés funkciókkal.
+     */
     public void panel7Setup() {
+        JButton saveExit = new JButton("Save&Exit");
+        saveExit.addActionListener(e -> {
+            try {
+                ablak.getJatekter().save();
+                System.exit(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         JButton save = new JButton("Save");
         save.addActionListener(e -> {
             try {
@@ -204,7 +264,13 @@ public class ControlWindow extends JFrame {
         JButton load = new JButton("Load");
         load.addActionListener(e -> {
             try {
-                ablak.getJatekter().load();
+                if (ablak == null) {
+                    ablak = new JatekWindow(Integer.parseInt(horizontal.getText()), Integer.parseInt(vertical.getText()));
+                    ablak.getJatekter().load();
+                }
+                else {
+                    ablak.getJatekter().load();
+                }  
             } catch (IOException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
@@ -212,6 +278,7 @@ public class ControlWindow extends JFrame {
 
         panel7 = new JPanel();
         panel7.setBackground(Color.BLACK);
+        panel7.add(saveExit);
         panel7.add(save);
         panel7.add(load);
         this.add(panel7);
