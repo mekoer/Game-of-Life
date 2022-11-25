@@ -20,13 +20,11 @@ public class ControlWindow extends JFrame {
     private JPanel panel6;
     private JPanel panel7;
     private JatekWindow ablak;
-    private boolean paused;
 
     /**
      * Konstruktor, konfigurálja az ablakot és meghívja a tartalmazott panelek setup függvényeit.
      */
     public ControlWindow() {
-        paused = true;
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Game of Life");
@@ -119,7 +117,7 @@ public class ControlWindow extends JFrame {
         fourx.addActionListener(e -> ablak.getJatekter().refreshTimer(250));
 
         JButton eightx = new JButton("8x");
-        fourx.addActionListener(e -> ablak.getJatekter().refreshTimer(125));
+        eightx.addActionListener(e -> ablak.getJatekter().refreshTimer(125));
 
         panel3 = new JPanel(new FlowLayout());
         panel3.setBackground(Color.BLACK);
