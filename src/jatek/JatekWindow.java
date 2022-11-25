@@ -11,10 +11,6 @@ public class JatekWindow extends JFrame {
     int hor;
     int ver;
 
-    /**
-     * @param h
-     * @param v
-     */
     public JatekWindow(int h, int v) {
         hor = h;
         ver = v;
