@@ -43,7 +43,4 @@ public class Cell implements Serializable {
     public void setMoreThan(int moreThan) { this.moreThan = moreThan; }
     public void setForBirth(int forBirth) { this.forBirth = forBirth; }
     public void setAliveNear(int aliveNear) { this.aliveNear = aliveNear; }
-
-
-
 }

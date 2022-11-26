@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
 /**
@@ -148,7 +146,7 @@ public class ControlWindow extends JFrame {
             }
             public void doThis() {
                 if (!lessThanToDie.getText().equals("")) {
-                    ablak.getJatekter().setLessToDie(Integer.parseInt(lessThanToDie.getText()));
+                    ablak.getJatekter().getTabla().setLessToDie(Integer.parseInt(lessThanToDie.getText()));
                 }
             }
         });
@@ -183,7 +181,7 @@ public class ControlWindow extends JFrame {
             }
             public void doThis() {
                 if (!moreThanToDie.getText().equals("")) {
-                    ablak.getJatekter().setMoreToDie(Integer.parseInt(moreThanToDie.getText()));
+                    ablak.getJatekter().getTabla().setMoreToDie(Integer.parseInt(moreThanToDie.getText()));
                 }
             }
         });
@@ -218,7 +216,7 @@ public class ControlWindow extends JFrame {
             }
             public void doThis() {
                 if (!toBirth.getText().equals("")) {
-                    ablak.getJatekter().setToBirth(Integer.parseInt(toBirth.getText()));
+                    ablak.getJatekter().getTabla().setToBirth(Integer.parseInt(toBirth.getText()));
                 }
             }
         });
@@ -238,7 +236,7 @@ public class ControlWindow extends JFrame {
         JButton saveExit = new JButton("Save&Exit");
         saveExit.addActionListener(e -> {
             try {
-                ablak.getJatekter().save();
+                ablak.getJatekter().getTabla().save();
                 System.exit(1);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
@@ -248,7 +246,7 @@ public class ControlWindow extends JFrame {
         JButton save = new JButton("Save");
         save.addActionListener(e -> {
             try {
-                ablak.getJatekter().save();
+                ablak.getJatekter().getTabla().save();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -259,10 +257,12 @@ public class ControlWindow extends JFrame {
             try {
                 if (ablak == null) {
                     ablak = new JatekWindow(Integer.parseInt(horizontal.getText()), Integer.parseInt(vertical.getText()));
-                    ablak.getJatekter().load();
+                    ablak.getJatekter().getTabla().load();
+                    ablak.getJatekter().repaint();
                 }
                 else {
-                    ablak.getJatekter().load();
+                    ablak.getJatekter().getTabla().load();
+                    ablak.getJatekter().repaint();
                 }  
             } catch (IOException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
