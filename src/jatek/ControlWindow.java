@@ -12,13 +12,6 @@ import java.io.IOException;
 public class ControlWindow extends JFrame {
     private JTextField horizontal;
     private JTextField vertical;
-    private JPanel panel1;
-    private JPanel panel2;
-    private JPanel panel3;
-    private JPanel panel4;
-    private JPanel panel5;
-    private JPanel panel6;
-    private JPanel panel7;
     private JatekWindow ablak;
 
     /**
@@ -47,7 +40,7 @@ public class ControlWindow extends JFrame {
      * ezekket vezérelhető hogy mekkora méretű játékablakot nyitunk.
      */
     public void panel1Setup() {
-        panel1 = new JPanel();
+        JPanel panel1 = new JPanel();
         panel1.setBackground(Color.BLACK);
         panel1.setLayout(new FlowLayout());
 
@@ -90,7 +83,7 @@ public class ControlWindow extends JFrame {
         JButton step = new JButton("Step Once");
         step.addActionListener(e -> ablak.getJatekter().lep());
 
-        panel2 = new JPanel(new FlowLayout());
+        JPanel panel2 = new JPanel(new FlowLayout());
         panel2.setBackground(Color.BLACK);
         panel2.add(playpauseL);
         panel2.add(playpauseB);
@@ -119,7 +112,7 @@ public class ControlWindow extends JFrame {
         JButton eightx = new JButton("8x");
         eightx.addActionListener(e -> ablak.getJatekter().refreshTimer(125));
 
-        panel3 = new JPanel(new FlowLayout());
+        JPanel panel3 = new JPanel(new FlowLayout());
         panel3.setBackground(Color.BLACK);
 
         panel3.add(seb);
@@ -158,7 +151,7 @@ public class ControlWindow extends JFrame {
             }
         });
 
-        panel4 = new JPanel();
+        JPanel panel4 = new JPanel();
         panel4.setBackground(Color.BLACK);
         panel4.add(lessLabel);
         panel4.add(lessThanToDie);
@@ -193,7 +186,7 @@ public class ControlWindow extends JFrame {
             }
         });
 
-        panel5 = new JPanel();
+        JPanel panel5 = new JPanel();
         panel5.setBackground(Color.BLACK);
         panel5.add(moreLabel);
         panel5.add(moreThanToDie);
@@ -228,7 +221,7 @@ public class ControlWindow extends JFrame {
             }
         });
 
-        panel6 = new JPanel();
+        JPanel panel6 = new JPanel();
         panel6.setBackground(Color.BLACK);
         panel6.add(birthLabel);
         panel6.add(toBirth);
@@ -274,7 +267,7 @@ public class ControlWindow extends JFrame {
             }
         });
 
-        panel7 = new JPanel();
+        JPanel panel7 = new JPanel();
         panel7.setBackground(Color.BLACK);
         panel7.add(saveExit);
         panel7.add(save);

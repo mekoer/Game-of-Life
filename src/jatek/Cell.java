@@ -11,8 +11,8 @@ public class Cell implements Serializable {
     private int lessThan; // (ha él) ennél kevesebb szomszéd alive szomszéd -> halál
     private int moreThan; // (ha él) ennél több alive szomszéd -> halál
     private int forBirth; // (ha nem él) ennyi élő szomszéd -> szuletik
-    private int coordHor;
-    private int coordVer;
+    private final int coordHor;
+    private final int coordVer;
 
     /**
      * Konstruktor, beállítja a cellára vonatkozó alapszabályokat és adatokat.

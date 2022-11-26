@@ -15,12 +15,15 @@ import java.util.ArrayList;
  */
 public class TablaPanel extends JPanel {
     private ArrayList<ArrayList<Cell>> State;
-    private int hor;
-    private int ver;
-    private int cellSize;
-    private Timer timer;
-    private int timerDelay;
-    private boolean paused;
+    private final int VisibleHor;
+    private final int VisibleVer;
+    private final int ActualHor;
+    private final int ActualVer;
+    int padding = 10;
+    private final int cellSize = 15;
+    private final Timer timer;
+    private int timerDelay = 1000;
+    private boolean paused = true;
 
     /**
      * konstruktor, inicializálja a tagváltozókat és beállítja a panel alaptulajdonságait.
@@ -28,18 +31,17 @@ public class TablaPanel extends JPanel {
      * @param v a cellák száma függőlegesen
      */
     public TablaPanel(int h, int v) {
-        hor = h;
-        ver = v;
-        paused = true;
-        timerDelay = 1000;
-        cellSize = 15;
+        VisibleHor = h;
+        VisibleVer = v;
+        ActualHor = h + padding*2;
+        ActualVer = v + padding*2;
         timer = new Timer(timerDelay, new Simulation());
 
         // initial tablaallapot: minden cella halott
         State = new ArrayList<>();
-        for (int i = 0; i < hor; i++) {
+        for (int i = 0; i < ActualHor; i++) {
             ArrayList<Cell> column = new ArrayList<>();
-            for (int j = 0; j < ver; j++) {
+            for (int j = 0; j < ActualVer; j++) {
                 column.add(new Cell(false, i, j));
             }
             State.add(column);
@@ -47,7 +49,7 @@ public class TablaPanel extends JPanel {
 
         this.addMouseListener(new MouseButtonListener());
 
-        setPreferredSize(new Dimension(hor*cellSize, ver*cellSize));
+        setPreferredSize(new Dimension(VisibleHor *cellSize, VisibleVer *cellSize));
         setOpaque(false);
     }
 
@@ -57,8 +59,8 @@ public class TablaPanel extends JPanel {
     private class MouseButtonListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {
-            int h = e.getX() / cellSize;
-            int v = e.getY() / cellSize;
+            int h = (e.getX() / cellSize) + padding;
+            int v = (e.getY() / cellSize) + padding;
             if (e.getButton() == MouseEvent.BUTTON1) {
                 State.get(h).get(v).setAlive(true);
             }
@@ -147,12 +149,12 @@ public class TablaPanel extends JPanel {
         temp = (ArrayList<ArrayList<Cell>>) in.readObject();
 
         // ha kisebb palyaba toltunk nagyobb mintat
-        if (temp.size() > hor || temp.get(0).size() > ver) {
+        if (temp.size() > ActualHor || temp.get(0).size() > ActualVer) {
             this.kill();
-            for(int i = 0; i < hor; ++i) {
-                for(int j = 0; j < ver; ++j) {
+            for(int i = 0; i < ActualHor; ++i) {
+                for(int j = 0; j < ActualVer; ++j) {
                     State.get(i).get(j).setAlive(
-                            temp.get(i + (temp.size() - hor) / 2).get(j + (temp.get(0).size() - ver) / 2).isAlive());
+                            temp.get(i + (temp.size() - ActualHor) / 2).get(j + (temp.get(0).size() - ActualVer) / 2).isAlive());
                 }
             }
         }
@@ -197,16 +199,16 @@ public class TablaPanel extends JPanel {
 
         // fekete background
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(0, 0, hor*cellSize, ver*cellSize);
+        g2d.fillRect(0, 0, VisibleHor *cellSize, VisibleVer *cellSize);
 
         // negyzetek rajzolasa
-        for (int i = 0; i < hor; i++) {
-            for (int j = 0; j < ver; j++) {
-                if (this.getAt(i, j).isAlive()) {
+        for (int i = 0; i < VisibleHor; i++) {
+            for (int j = 0; j < VisibleVer; j++) {
+                if (this.getAt(i + padding, j + padding).isAlive()) {
                     g2d.setColor(Color.WHITE);
                     g2d.fillRect(i*cellSize, j*cellSize, cellSize, cellSize);
                 }
-                else if (!this.getAt(i, j).isAlive()) {
+                else if (!this.getAt(i + padding, j + padding).isAlive()) {
                     g2d.setColor(Color.BLACK);
                     g2d.fillRect(i*cellSize, j*cellSize, cellSize, cellSize);
                 }
@@ -215,11 +217,11 @@ public class TablaPanel extends JPanel {
 
         // elvalasztovonalak, hogy szebb legyen
         g2d.setColor(Color.WHITE);
-        for (int i = 0; i < hor+1; i++) {
-            g2d.drawLine(i*cellSize, 0, i*cellSize, ver*cellSize);
+        for (int i = 0; i < VisibleHor +1; i++) {
+            g2d.drawLine(i*cellSize, 0, i*cellSize, VisibleVer *cellSize);
         }
-        for (int j = 0; j < ver+1; j++) {
-            g2d.drawLine(0, j*cellSize, hor*cellSize, j*cellSize);
+        for (int j = 0; j < VisibleVer +1; j++) {
+            g2d.drawLine(0, j*cellSize, VisibleHor *cellSize, j*cellSize);
         }
     }
 
@@ -265,8 +267,8 @@ public class TablaPanel extends JPanel {
      * Az összes tárolt cellán kiszámolja az élő szomszédok számát.
      */
     public void stateRefresh() {
-        for (int i = 1; i < hor - 1; i++) {
-            for (int j = 1; j < ver - 1; j++) {
+        for (int i = 1; i < ActualHor - 1; i++) {
+            for (int j = 1; j < ActualVer - 1; j++) {
                 this.calculateAliveNear(this.getAt(i, j));
             }
         }
