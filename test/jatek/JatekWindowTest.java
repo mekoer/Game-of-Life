@@ -3,11 +3,14 @@ package jatek;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.*;
-
-import static org.junit.Assert.*;
-
+/**
+ * Teszt osztály a JatekWindow osztályhoz.
+ */
 public class JatekWindowTest {
+
+    /**
+     * Teszteli, hogy konstruktorhívás esetén helyesen jön e létre az ablak.
+     */
     @Test
     public void jatekAblakTest() {
         JatekWindow test = new JatekWindow(25, 25);

@@ -45,11 +45,11 @@ public class ControlWindow extends JFrame {
         panel1.setLayout(new FlowLayout());
 
         // szelesseg textbox es label
-        JLabel HLabel = new JLabel("Width:");
+        JLabel HLabel = new JLabel("Width: ");
         horizontal = new JTextField("25", 3);
 
         // magassag textbox es label
-        JLabel VLabel = new JLabel("Height:");
+        JLabel VLabel = new JLabel("Height: ");
         vertical = new JTextField("25", 3);
 
         // inditogomb es listener
@@ -76,7 +76,7 @@ public class ControlWindow extends JFrame {
      */
     public void panel2Setup() {
         // play pause gomb
-        JLabel playpauseL = new JLabel("Play / Pause");
+        JLabel playpauseL = new JLabel("Play / Pause: ");
         JButton playpauseB = new JButton("> / II");
         playpauseB.addActionListener(e -> ablak.getJatekter().controlSim());
 
@@ -98,7 +98,7 @@ public class ControlWindow extends JFrame {
      */
     public void panel3Setup() {
         // speed control
-        JLabel seb = new JLabel("Sebesség");
+        JLabel seb = new JLabel("Sebesség: ");
 
         JButton onex = new JButton("1x");
         onex.addActionListener(e -> ablak.getJatekter().refreshTimer(1000));
@@ -129,7 +129,7 @@ public class ControlWindow extends JFrame {
      * hogy mi legyen a cella életben maradásához szükséges minimális számú élő szomszéd.
      */
     public void panel4Setup() {
-        JLabel lessLabel = new JLabel("minimalis szamu elo szomszed az eletben maradashoz");
+        JLabel lessLabel = new JLabel("Minimális számú élő szomszéd az életben maradáshoz: ");
         JTextField lessThanToDie = new JTextField("2", 3);
         lessThanToDie.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -164,7 +164,7 @@ public class ControlWindow extends JFrame {
      * hogy mi legyen a cella életben maradásához szükséges maximális számú élő szomszéd.
      */
     public void panel5Setup() {
-        JLabel moreLabel = new JLabel("maximalis szamu elo szomszed az eletben maradashoz");
+        JLabel moreLabel = new JLabel("Maximális számú élő szomszéd az életben maradáshoz: ");
         JTextField moreThanToDie = new JTextField("3", 3);
         moreThanToDie.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -199,7 +199,7 @@ public class ControlWindow extends JFrame {
      * hogy mi legyen a cella újjászületéséhez szükséges számú élő szomszéd.
      */
     public void panel6Setup() {
-        JLabel birthLabel = new JLabel("szukséges számú elo szomszed az ujjaszuleteshez");
+        JLabel birthLabel = new JLabel("Szükséges számú élő szomszéd az újjászületéshez: ");
         JTextField toBirth = new JTextField("3", 3);
         toBirth.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -236,8 +236,13 @@ public class ControlWindow extends JFrame {
         JButton saveExit = new JButton("Save&Exit");
         saveExit.addActionListener(e -> {
             try {
-                ablak.getJatekter().getTabla().save();
-                System.exit(1);
+                if (ablak != null) {
+                    ablak.getJatekter().getTabla().save();
+                    System.exit(1);
+                }
+                else {
+                    System.exit(1);
+                }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -246,7 +251,12 @@ public class ControlWindow extends JFrame {
         JButton save = new JButton("Save");
         save.addActionListener(e -> {
             try {
-                ablak.getJatekter().getTabla().save();
+                if (ablak == null) {
+                    // semmi
+                }
+                else {
+                    ablak.getJatekter().getTabla().save();
+                }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

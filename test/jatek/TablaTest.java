@@ -11,6 +11,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Tesztosztály a Tabla osztályhoz.
+ */
 public class TablaTest {
     Tabla testTabla;
 
@@ -19,12 +22,18 @@ public class TablaTest {
         testTabla = new Tabla(25, 25);
     }
 
+    /**
+     * A getAt metódus helyes működését teszteli.
+     */
     @Test
     public void getAt() {
         Assert.assertSame(testTabla.getState().get(10).get(10), testTabla.getAt(10, 10));
         Assert.assertNotSame(testTabla.getState().get(0).get(0), testTabla.getAt(10, 10));
     }
 
+    /**
+     * A calculateAliveNear metódus helyes működését teszteli.
+     */
     @Test
     public void calculateAliveNear() {
         Cell cell = new Cell(true, 1, 1);
@@ -32,6 +41,9 @@ public class TablaTest {
         Assert.assertEquals(0, cell.getAliveNear());
     }
 
+    /**
+     * A stateRefresh metódus helyes működését teszteli.
+     */
     @Test
     public void stateRefresh() {
         testTabla.getAt(0, 0).setAlive(true);
@@ -43,6 +55,9 @@ public class TablaTest {
         Assert.assertEquals(3, testTabla.getAt(1, 1).getAliveNear());
     }
 
+    /**
+     * A nextState metódust teszteli, üres cella újjászületése eset.
+     */
     @Test
     public void simTest1() {
         Tabla tablaSimTest = new Tabla(3, 3);
@@ -55,6 +70,9 @@ public class TablaTest {
         Assert.assertTrue(tablaSimTest.getAt(1, 1).isAlive());
     }
 
+    /**
+     * A nextState metódust teszteli, cella elhalálozása túl sok élő szomszéd miatt eset.
+     */
     @Test
     public void simTest2() {
         Tabla tablaSimTest = new Tabla(3, 3);
@@ -68,6 +86,9 @@ public class TablaTest {
         Assert.assertFalse(tablaSimTest.getAt(1, 1).isAlive());
     }
 
+    /**
+     * A nextState metódust teszteli, cella elhalálozása túl kevés élő szomszéd miatt eset.
+     */
     @Test
     public void simTest3() {
         Tabla tablaSimTest = new Tabla(3, 3);
@@ -79,6 +100,11 @@ public class TablaTest {
         Assert.assertFalse(tablaSimTest.getAt(1, 1).isAlive());
     }
 
+    /**
+     * A save és a load metódusok helyes működését teszteli.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Test
     public void save() throws IOException, ClassNotFoundException {
         testTabla.save();
@@ -92,6 +118,9 @@ public class TablaTest {
         }
     }
 
+    /**
+     * A kill metódus helyes működését teszteli.
+     */
     @Test
     public void kill() {
         testTabla.kill();

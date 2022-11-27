@@ -2,8 +2,10 @@ package jatek;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Map;
 
+/**
+ * A játktér tárolásáért és az azon végzett műveletekért felelős osztály.
+ */
 public class Tabla {
     private final int ActualHor;
     private final int ActualVer;

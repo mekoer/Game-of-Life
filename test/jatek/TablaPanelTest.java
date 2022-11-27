@@ -1,15 +1,14 @@
 package jatek;
 
-import jatek.Tabla;
-import jatek.TablaPanel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.*;
-
 import static org.junit.Assert.*;
 
+/**
+ * Tesztosztály a TablaPanel osztályhoz.
+ */
 public class TablaPanelTest {
     TablaPanel panelTest;
 
@@ -18,6 +17,9 @@ public class TablaPanelTest {
         panelTest = new TablaPanel(25, 25);
     }
 
+    /**
+     * A controlSim metódus helyes működését teszteli.
+     */
     @Test
     public void controlSim() {
         assertTrue(panelTest.getPaused());
@@ -27,6 +29,9 @@ public class TablaPanelTest {
         assertTrue(panelTest.getPaused());
     }
 
+    /**
+     * A timer delay értékér frissítő refreshTimer metódus helyes működését teszteli.
+     */
     @Test
     public void refreshTimer() {
         panelTest.refreshTimer(250);

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="939128ae-598c-4597-9e05-039c2e01889b" name="Changes" comment="11.26.15.15.">
-      <change afterPath="$PROJECT_DIR$/test/jatek/JatekWindowTest.java" afterDir="false" />
+    <list default="true" id="939128ae-598c-4597-9e05-039c2e01889b" name="Changes" comment="11.26.18.39.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/jatek/ControlWindowTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jatek/ControlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/ControlWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jatek/LifeMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/LifeMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jatek/Tabla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/Tabla.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/jatek/JatekWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/jatek/JatekWindowTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/jatek/TablaPanelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/jatek/TablaPanelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/jatek/TablaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/jatek/TablaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +73,7 @@
       <recent name="jatek" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in Game of Life">
+  <component name="RunManager" selected="Application.LifeMain">
     <configuration name="LifeMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="jatek.LifeMain" />
       <module name="Game of Life" />
@@ -108,9 +112,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LifeMain" />
         <item itemvalue="JUnit.All in Game of Life" />
         <item itemvalue="JUnit.JatekWindowTest" />
-        <item itemvalue="Application.LifeMain" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669558595011</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="11.26.18.39.">
+      <created>1669570790821</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669570790821</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,6 +196,7 @@
     <MESSAGE value="11.26.18.45." />
     <MESSAGE value="11.26.15.05." />
     <MESSAGE value="11.26.15.15." />
-    <option name="LAST_COMMIT_MESSAGE" value="11.26.15.15." />
+    <MESSAGE value="11.26.18.39." />
+    <option name="LAST_COMMIT_MESSAGE" value="11.26.18.39." />
   </component>
 </project>
