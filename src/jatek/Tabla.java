@@ -2,6 +2,7 @@ package jatek;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Tabla {
     private final int ActualHor;
@@ -25,11 +26,11 @@ public class Tabla {
 
     /**
      * Visszaadja a tárolóból a (h, v) helyen található cellát.
-     * @param h a cellák száma vízszintesen
-     * @param v a cellák száma függőlegesen
+     * @param h a keresett cella vízszintes koordinátája
+     * @param v a keresett cella függőleges koordinátája
      * @return Cell objektum a (h, v) által megadott pozícióból
      */
-    Cell getAt(int h, int v) {
+    public Cell getAt(int h, int v) {
         return State.get(h).get(v);
     }
 
@@ -189,5 +190,9 @@ public class Tabla {
                 cell.setForBirth(toB);
             }
         }
+    }
+
+    public ArrayList<ArrayList<Cell>> getState() {
+        return State;
     }
 }

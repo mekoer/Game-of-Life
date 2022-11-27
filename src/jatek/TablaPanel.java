@@ -151,4 +151,6 @@ public class TablaPanel extends JPanel {
     public Tabla getTabla() {
         return tabla;
     }
+    public boolean getPaused() { return paused; }
+    public Timer getTimer() { return timer; }
 }

@@ -22,6 +22,7 @@ public class Cell implements Serializable {
      */
     public Cell(boolean isAlive, int hor, int ver) {
         alive = isAlive;
+        aliveNear = 0;
         lessThan = 2; // alapszabalyok
         moreThan = 3;
         forBirth = 3;
