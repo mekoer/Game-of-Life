@@ -14,7 +14,7 @@ public class TablaPanel extends JPanel {
     private final Tabla tabla;
     private final int VisibleHor;
     private final int VisibleVer;
-    int padding = 10;
+    int padding = 50;
     private final int cellSize = 15;
     private final Timer timer;
     private int timerDelay = 1000;
@@ -140,10 +140,10 @@ public class TablaPanel extends JPanel {
 
         // elvalasztovonalak, hogy szebb legyen
         g2d.setColor(Color.WHITE);
-        for (int i = 0; i < VisibleHor +1; i++) {
+        for (int i = 0; i < VisibleHor + 1; i++) {
             g2d.drawLine(i*cellSize, 0, i*cellSize, VisibleVer *cellSize);
         }
-        for (int j = 0; j < VisibleVer +1; j++) {
+        for (int j = 0; j < VisibleVer + 1; j++) {
             g2d.drawLine(0, j*cellSize, VisibleHor *cellSize, j*cellSize);
         }
     }

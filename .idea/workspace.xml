@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="939128ae-598c-4597-9e05-039c2e01889b" name="Changes" comment="11.26.18.39.">
+    <list default="true" id="939128ae-598c-4597-9e05-039c2e01889b" name="Changes" comment="11.26.20.34.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/save.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jatek/ControlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/ControlWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jatek/LifeMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/LifeMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jatek/Tabla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/Tabla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/jatek/JatekWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/jatek/JatekWindowTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/jatek/TablaPanelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/jatek/TablaPanelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/jatek/TablaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/jatek/TablaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jatek/TablaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jatek/TablaPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,21 +45,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mayad/Desktop/prog3/Game of Life&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -126,6 +124,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669420033454</updated>
+      <workItem from="1669577717250" duration="2579000" />
     </task>
     <task id="LOCAL-00001" summary="11.26.01.39.">
       <created>1669423170817</created>
@@ -176,8 +175,18 @@
       <option name="project" value="LOCAL" />
       <updated>1669570790821</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="11.26.20.34.">
+      <created>1669577659492</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669577659492</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -197,6 +206,7 @@
     <MESSAGE value="11.26.15.05." />
     <MESSAGE value="11.26.15.15." />
     <MESSAGE value="11.26.18.39." />
-    <option name="LAST_COMMIT_MESSAGE" value="11.26.18.39." />
+    <MESSAGE value="11.26.20.34." />
+    <option name="LAST_COMMIT_MESSAGE" value="11.26.20.34." />
   </component>
 </project>
