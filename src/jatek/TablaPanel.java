@@ -15,7 +15,7 @@ public class TablaPanel extends JPanel {
     private final int VisibleHor;
     private final int VisibleVer;
     int padding = 50;
-    private final int cellSize = 15;
+    private final int cellSize = 10;
     private final Timer timer;
     private int timerDelay = 1000;
     private boolean paused = true;

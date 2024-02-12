@@ -9,6 +9,7 @@ public class LifeMain {
      * @param args
      */
     public static void main(String[] args) {
-        ControlWindow jatek = new ControlWindow();
+        //ControlWindow jatek = new ControlWindow();
+        MainWindow jatekter =  new MainWindow();
     }
 }
