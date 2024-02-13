@@ -1,6 +1,10 @@
 package jatek;
 
+import com.sun.corba.se.spi.activation.IIOP_CLEAR_TEXT;
+
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
@@ -38,12 +42,29 @@ public class MainWindow extends JFrame {
         JButton eightx = new JButton("8x");
         eightx.addActionListener(e -> jatekPanel.refreshTimer(125));
 
+        JButton clear = new JButton("Clear");
+        clear.addActionListener(e -> {
+            jatekPanel.getTabla().kill();
+            repaint();
+        });
+
+        JPanel magnifySliderPanel = new JPanel();
+        JSlider magnifySlider = new JSlider(JSlider.VERTICAL, 1, 10, 1);
+
+        magnifySlider.addChangeListener(e -> jatekPanel.zoom(magnifySlider.getValue()));
+
+        magnifySliderPanel.add(magnifySlider);
+        magnifySliderPanel.setPreferredSize(new Dimension(20, 600));
+
         menu.add(playpauseB);
         menu.add(step);
         menu.add(onex);
         menu.add(twox);
         menu.add(fourx);
         menu.add(eightx);
+        menu.add(clear);
+
+        this.add(magnifySliderPanel, BorderLayout.WEST);
 
         this.add(menu, BorderLayout.NORTH);
 

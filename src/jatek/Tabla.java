@@ -50,14 +50,11 @@ public class Tabla {
         int aliveNear = 0;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                // a parameterben megadott cella, nem tortenik semmi
-                //noinspection StatementWithEmptyBody
-                if (i == 0 && j == 0) {
-                    //semmi
-                }
                 // ha eletben van az adott szomszed, inkrementaljuk
-                else if (this.getAt(i + cell.getHor(), j + cell.getVer()).isAlive()) {
-                    aliveNear++;
+                if (this.getAt(i + cell.getHor(), j + cell.getVer()).isAlive()) {
+                    if (i != 0 && j != 0) {
+                        aliveNear++;
+                    }
                 }
             }
         }

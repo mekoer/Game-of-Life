@@ -2,10 +2,10 @@ package jatek;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
+
+import static javax.swing.SwingUtilities.isLeftMouseButton;
+import static javax.swing.SwingUtilities.isRightMouseButton;
 
 /**
  * A játéktér ablakában elhelyezett panel, erre rajzolja ki a program az cellákat, JPanelként viselkedik.
@@ -15,7 +15,7 @@ public class TablaPanel extends JPanel {
     private final int VisibleHor;
     private final int VisibleVer;
     int padding = 50;
-    private final int cellSize = 10;
+    private int drawnCellSize = 10;
     private final Timer timer;
     private int timerDelay = 1000;
     private boolean paused = true;
@@ -35,36 +35,56 @@ public class TablaPanel extends JPanel {
         tabla = new Tabla(actualHor, actualVer);
 
         this.addMouseListener(new MouseButtonListener());
+        this.addMouseMotionListener(new MouseMotionListener());
 
-        setPreferredSize(new Dimension(VisibleHor *cellSize, VisibleVer *cellSize));
+        setPreferredSize(new Dimension(VisibleHor * drawnCellSize, VisibleVer * drawnCellSize));
         setOpaque(false);
     }
 
     /**
-     * Az egérrel végzett akciókért felelős Listener, itt található a logika ami a játéktábla editálásáért felel.
+     * Zoomolást megvalósító logika
+     * @param sliderValue a zoom slider értéke
      */
-    private class MouseButtonListener implements MouseListener {
+    public void zoom(int sliderValue) {
+        int baseCellSize = 10;
+        drawnCellSize = baseCellSize * sliderValue;
+        repaint();
+    }
+
+    /**
+     * Az egérkattintásokat figyelő Listener, itt található a logika ami a játéktábla editálásáért felel.
+     */
+    private class MouseButtonListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            int h = (e.getX() / cellSize) + padding;
-            int v = (e.getY() / cellSize) + padding;
+            int h = (e.getX() / drawnCellSize) + padding;
+            int v = (e.getY() / drawnCellSize) + padding;
             if (e.getButton() == MouseEvent.BUTTON1) {
                 tabla.getAt(h, v).setAlive(true);
-            }
-            else if (e.getButton() == MouseEvent.BUTTON3) {
+            } else if (e.getButton() == MouseEvent.BUTTON3) {
                 tabla.getAt(h, v).setAlive(false);
             }
             tabla.stateRefresh();
             repaint();
         }
+    }
+
+    /**
+     * Az egérmozgásokat figyelő Listener, itt található a logika ami a játéktábla editálásáért felel.
+     */
+    private class MouseMotionListener extends MouseMotionAdapter {
         @Override
-        public void mousePressed(MouseEvent e) {}
-        @Override
-        public void mouseReleased(MouseEvent e) {}
-        @Override
-        public void mouseEntered(MouseEvent e) {}
-        @Override
-        public void mouseExited(MouseEvent e) {}
+        public void mouseDragged(MouseEvent e) {
+            int h = (e.getX() / drawnCellSize) + padding;
+            int v = (e.getY() / drawnCellSize) + padding;
+            if (isLeftMouseButton(e)) {
+                tabla.getAt(h, v).setAlive(true);
+            } else if (isRightMouseButton(e)) {
+                tabla.getAt(h, v).setAlive(false);
+            }
+            tabla.stateRefresh();
+            repaint();
+        }
     }
 
     /**
@@ -117,23 +137,23 @@ public class TablaPanel extends JPanel {
      * @param g the <code>Graphics</code> context in which to paint
      */
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         // fekete background
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(0, 0, VisibleHor *cellSize, VisibleVer *cellSize);
+        g2d.fillRect(0, 0, VisibleHor * drawnCellSize, VisibleVer * drawnCellSize);
 
         // negyzetek rajzolasa
         for (int i = 0; i < VisibleHor; i++) {
             for (int j = 0; j < VisibleVer; j++) {
                 if (tabla.getAt(i + padding, j + padding).isAlive()) {
                     g2d.setColor(Color.WHITE);
-                    g2d.fillRect(i*cellSize, j*cellSize, cellSize, cellSize);
+                    g2d.fillRect(i* drawnCellSize, j* drawnCellSize, drawnCellSize, drawnCellSize);
                 }
                 else if (!tabla.getAt(i + padding, j + padding).isAlive()) {
                     g2d.setColor(Color.BLACK);
-                    g2d.fillRect(i*cellSize, j*cellSize, cellSize, cellSize);
+                    g2d.fillRect(i* drawnCellSize, j* drawnCellSize, drawnCellSize, drawnCellSize);
                 }
             }
         }
@@ -141,11 +161,15 @@ public class TablaPanel extends JPanel {
         // elvalasztovonalak, hogy szebb legyen
         g2d.setColor(Color.WHITE);
         for (int i = 0; i < VisibleHor + 1; i++) {
-            g2d.drawLine(i*cellSize, 0, i*cellSize, VisibleVer *cellSize);
+            g2d.drawLine(i* drawnCellSize, 0, i* drawnCellSize, VisibleVer * drawnCellSize);
         }
         for (int j = 0; j < VisibleVer + 1; j++) {
-            g2d.drawLine(0, j*cellSize, VisibleHor *cellSize, j*cellSize);
+            g2d.drawLine(0, j* drawnCellSize, VisibleHor * drawnCellSize, j* drawnCellSize);
         }
+    }
+
+    public void kill() {
+
     }
 
     public Tabla getTabla() {
